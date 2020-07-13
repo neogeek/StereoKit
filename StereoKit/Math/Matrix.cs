@@ -17,10 +17,10 @@ namespace StereoKit
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Matrix
 	{
-		private Vec4 row1;
-		private Vec4 row2;
-		private Vec4 row3;
-		private Vec4 row4;
+		public Vec4 row1;
+		public Vec4 row2;
+		public Vec4 row3;
+		public Vec4 row4;
 
 		/// <summary>Creates an inverse matrix! If the matrix takes a point 
 		/// from a -> b, then its inverse takes the point from b -> a.</summary>
@@ -60,6 +60,7 @@ namespace StereoKit
 			return result;
 		}
 		public static Vec3 operator *(Matrix a, Vec3 b) => NativeAPI.matrix_mul_point(a, b);
+		public static Vec4 operator *(Matrix a, Vec4 b) => NativeAPI.matrix_mul_vec4(a, b);
 		public static Ray operator *(Matrix a, Ray b) => a.TransformRay(b);
 
 		/// <summary>Translate, Rotate, Scale. Creates a transform Matrix using all these components!</summary>
@@ -115,5 +116,10 @@ namespace StereoKit
 				row4 = new Vec4(0,0,0,1),
 			};
 		} }
+
+		public override string ToString()
+		{
+			return $"[{row1}, {row2}, {row3}, {row4}]";
+		}
 	}
 }
