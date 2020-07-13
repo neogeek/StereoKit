@@ -166,6 +166,14 @@ vec3 matrix_mul_point(const matrix &transform, const vec3 &point) {
 
 ///////////////////////////////////////////
 
+vec4 matrix_mul_vec4(const matrix &transform, const vec4 &point) {
+	XMMATRIX mat;
+	math_matrix_to_fast(transform, &mat);
+	return math_fast_to_vec4(XMVector4Transform(math_vec4_to_fast(point), mat));
+}
+
+///////////////////////////////////////////
+
 vec3 matrix_mul_point(const XMMATRIX &transform, const vec3 &point) {
 	return math_fast_to_vec3( XMVector3Transform(math_vec3_to_fast(point), transform) );
 }

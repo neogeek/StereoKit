@@ -8,12 +8,19 @@ namespace sk {
 void matrix_mul(const matrix &a, const matrix &b, DirectX::XMMATRIX &out_matrix);
 void matrix_mul(const matrix &a, const DirectX::XMMATRIX &b, DirectX::XMMATRIX &out_matrix);
 vec3 matrix_mul_point    (const DirectX::XMMATRIX &transform, const vec3 &point);
+vec4 matrix_mul_vec4     (const DirectX::XMMATRIX &transform, const vec4 &point);
 vec3 matrix_mul_direction(const DirectX::XMMATRIX &transform, const vec3 &direction);
 
 ///////////////////////////////////////////
 
 inline DirectX::XMVECTOR math_vec3_to_fast(const vec3 &vector) {
 	return DirectX::XMLoadFloat3((DirectX::XMFLOAT3 *)&vector); 
+}
+
+///////////////////////////////////////////
+
+inline DirectX::XMVECTOR math_vec4_to_fast(const vec4 &vector) {
+	return DirectX::XMLoadFloat4((DirectX::XMFLOAT4 *)&vector);
 }
 
 ///////////////////////////////////////////
@@ -27,6 +34,14 @@ inline DirectX::XMVECTOR math_quat_to_fast(const quat &quaternion) {
 inline vec3 math_fast_to_vec3(const DirectX::XMVECTOR &a) {
 	vec3 result; 
 	DirectX::XMStoreFloat3((DirectX::XMFLOAT3 *)&result, a);
+	return result;
+}
+
+///////////////////////////////////////////
+
+inline vec4 math_fast_to_vec4(const DirectX::XMVECTOR &a) {
+	vec4 result;
+	DirectX::XMStoreFloat4((DirectX::XMFLOAT4 *)&result, a);
 	return result;
 }
 

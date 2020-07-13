@@ -48,6 +48,7 @@ namespace StereoKit
 		[DllImport(dll, CharSet = cSet, CallingConvention = call)] public static extern void   matrix_inverse      (in Matrix a, out Matrix out_matrix);
 		[DllImport(dll, CharSet = cSet, CallingConvention = call)] public static extern void   matrix_mul          (in Matrix a, in Matrix b, out Matrix out_matrix);
 		[DllImport(dll, CharSet = cSet, CallingConvention = call)] public static extern Vec3   matrix_mul_point    (in Matrix transform, in Vec3 point);
+		[DllImport(dll, CharSet = cSet, CallingConvention = call)] public static extern Vec4   matrix_mul_vec4     (in Matrix transform, in Vec4 point);
 		[DllImport(dll, CharSet = cSet, CallingConvention = call)] public static extern Vec3   matrix_mul_direction(in Matrix transform, in Vec3 direction);
 		[DllImport(dll, CharSet = cSet, CallingConvention = call)] public static extern Matrix matrix_trs          (in Vec3 position, in Quat orientation, in Vec3 scale);
 		[DllImport(dll, CharSet = cSet, CallingConvention = call)] public static extern void   matrix_trs_out      (out Matrix out_result, in Vec3 position, in Quat orientation, in Vec3 scale);

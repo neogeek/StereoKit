@@ -60,6 +60,7 @@ namespace StereoKit
 			return result;
 		}
 		public static Vec3 operator *(Matrix a, Vec3 b) => NativeAPI.matrix_mul_point(a, b);
+		public static Vec4 operator *(Matrix a, Vec4 b) => NativeAPI.matrix_mul_vec4(a, b);
 		public static Ray operator *(Matrix a, Ray b) => a.TransformRay(b);
 
 		/// <summary>Translate, Rotate, Scale. Creates a transform Matrix using all these components!</summary>
