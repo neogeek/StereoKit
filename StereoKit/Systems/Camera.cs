@@ -6,7 +6,7 @@
         /// <param name="position">The position in world space you want to convert to screen space.</param>
         public static Vec3 WorldToScreenPoint(Vec3 position)
         {
-            var mat = Renderer.Projection * Renderer.CameraRoot;
+            var mat = Input.Head.ToMatrix().Inverse() * Renderer.Projection * Renderer.CameraRoot;
 
             var point = mat * new Vec4(position.x, position.y, position.z, 1);
 
