@@ -20,5 +20,17 @@
 
             return new Vec3(x, y, position.z);
         }
+
+        /// <summary>Calculates the viewport position of a Vec3 in world space relative to the camera.</summary>
+        /// <param name="position">The position in world space you want to convert to viewport space.</param>
+        public static Vec3 WorldToViewportPoint(Vec3 position)
+        {
+            var point = WorldToScreenPoint(position);
+
+            var x = point.x / (StereoKitApp.System.displayWidth - point.x);
+            var y = point.y / (StereoKitApp.System.displayHeight - point.y);
+
+            return new Vec3(x, y, point.z);
+        }
     }
 }
