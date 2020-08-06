@@ -136,5 +136,10 @@ namespace StereoKit
 				row4 = new Vec4(0,0,0,1),
 			};
 		} }
+
+		public override string ToString()
+		{
+			return $"[{row1}, {row2}, {row3}, {row4}]";
+		}
 	}
 }
