@@ -12,6 +12,22 @@ namespace StereoKit
 	{
 		/// <summary>Vector components.</summary>
 		public float x, y;
+		
+		public float this[int index]
+		{
+			get
+			{
+				switch (index)
+				{
+					case 0:
+						return x;
+					case 1:
+						return y;
+					default:
+						throw new ArgumentOutOfRangeException();
+				}
+			}
+		}
 
 		/// <summary>Magnitude is the length of the vector! Or the distance 
 		/// from the origin to this point. Uses Math.Sqrt, so it's not dirt 

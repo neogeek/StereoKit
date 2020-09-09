@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
 namespace StereoKit
 {
@@ -9,6 +10,26 @@ namespace StereoKit
 	{
 		/// <summary>Vector components.</summary>
 		public float x, y, z, w;
+		
+		public float this[int index]
+		{
+			get
+			{
+				switch (index)
+				{
+					case 0:
+						return x;
+					case 1:
+						return y;
+					case 2:
+						return z;
+					case 3:
+						return w;
+					default:
+						throw new ArgumentOutOfRangeException();
+				}
+			}
+		}
 
 		public Vec2 XY {get=> new Vec2(x, y); set{ x = value.x; y = value.y; }}
 		public Vec2 YZ {get=> new Vec2(y, z); set{ y = value.x; z = value.y; }}
