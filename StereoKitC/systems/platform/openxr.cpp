@@ -236,42 +236,7 @@ void openxr_preferred_extensions(uint32_t &out_extension_count, const char **out
 ///////////////////////////////////////////
 
 XrReferenceSpaceType openxr_preferred_space() {
-
-	// OpenXR uses a couple different types of reference frames for positioning content, we need to choose one for
-	// displaying our content! STAGE would be relative to the center of your guardian system's bounds, and LOCAL
-	// would be relative to your device's starting location.
-
-	XrReferenceSpaceType refspace_priority[] = {
-		XR_REFERENCE_SPACE_TYPE_UNBOUNDED_MSFT,
-		XR_REFERENCE_SPACE_TYPE_LOCAL,
-		XR_REFERENCE_SPACE_TYPE_STAGE, };
-
-	// Find the spaces OpenXR has access to on this device
-	uint32_t refspace_count = 0;
-	xrEnumerateReferenceSpaces(xr_session, 0, &refspace_count, nullptr);
-	XrReferenceSpaceType *refspace_types = (XrReferenceSpaceType *)malloc(sizeof(XrReferenceSpaceType) * refspace_count);
-	xrEnumerateReferenceSpaces(xr_session, refspace_count, &refspace_count, refspace_types);
-
-	// Find which one we prefer!
-	XrReferenceSpaceType result = (XrReferenceSpaceType)0;
-	for (int32_t p = 0; p < _countof(refspace_priority); p++) {
-		for (uint32_t i = 0; i < refspace_count; i++) {
-			if (refspace_types[i] == refspace_priority[p]) {
-				result = refspace_types[i];
-				break;
-			}
-		}
-		if (result != 0)
-			break;
-	}
-
-	// TODO: UNBOUNDED_MSFT and STAGE have very different behavior, but
-	// STAGE behavior is preferred. So it would be nice to make some considerations
-	// here to change that?
-
-	free(refspace_types);
-
-	return result;
+	return XR_REFERENCE_SPACE_TYPE_VIEW;
 }
 
 ///////////////////////////////////////////
